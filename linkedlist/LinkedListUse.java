@@ -5,35 +5,41 @@ public class LinkedListUse {
     public static void main(String[] args) {
         Node<Integer> head = createLinkedList();
         print(head);
-        System.out.println();
         System.out.println("The length of the linked list is " + length(head));
         System.out.println("Printing the ith Node data");
         printithNode(head, length(head));
         head = insert(head, length(head));
-        System.out.println();
+        System.out.println("After inserting the element, the linked list is ");
         print(head);
         head = delete(head, length(head));
-        System.out.println();
+        System.out.println("After deleting the element, the linked list is");
         print(head);
-        System.out.println();
-        System.out.println(search(head));
+        System.out.println("Search result: " + search(head));
         head = appendLast(head, length(head));
-        System.out.println();
+        System.out.println("After appending last N nodes to the front, the linked list is ");
         print(head);
-        System.out.println("The Reverse of the linkedList is ");
+        System.out.println("The Reverse of the linked list is ");
         head = reverse(head);
-        System.out.println();
         print(head);
-        System.out.println("Printing the linkedList using Recursion");
+        System.out.println("Printing the linked list using Recursion");
         printRecursion(head);
-//        System.out.println("Enter the position where you want to insert");
-//        int x = sc.nextInt();
-//        System.out.println("Enter the position where you want to insert");
-//        int n = sc.nextInt();
-//        head = insertRecursively(head,n, x);
-//        System.out.println("Linked list after recursive insertion:");
-//        print(head);
-        System.out.println("Reversing the Array Using Recursion"); 
+        System.out.println("Inserting the elements using recursion");
+        System.out.println("Enter the element you want to insert");
+        int x = sc.nextInt();
+        System.out.println("Enter the position where you want to insert");
+        int n = sc.nextInt();
+        head = insertRecursively(head, x, n);
+        System.out.println("The linked list after inserting the element at the position is ");
+        print(head);
+        System.out.println("Enter the position where you want to delete the node");
+        n = sc.nextInt();
+        head = deleteRecursively(head, n);
+        System.out.println("After deleting the element using Recursion, the linked list is ");
+        print(head);
+        Node<Integer>prev=null;
+        head=reverseLinkedListRecursively(head,prev);
+        System.out.println("Linked List after reversing using recursion is ");
+        print(head);
     }
     public static Node<Integer> createLinkedList() {
         Node<Integer> head;
@@ -43,9 +49,9 @@ public class LinkedListUse {
         head = node1;
         Node<Integer> tail = head;
         while (true) {
-            System.out.println("Do you want to add more Nodes enter y or n");
+            System.out.println("Do you want to add more Nodes? Enter y or n");
             String str = sc.next();
-            if (str.equals("y")) {
+            if (str.toLowerCase().equals("y")) {
                 System.out.println("Enter the value of the node");
                 n = sc.nextInt();
                 Node<Integer> node = new Node<>(n);
@@ -75,7 +81,8 @@ public class LinkedListUse {
     public static void printithNode(Node<Integer> p, int length) {
         System.out.println("Enter the index of the node");
         int n = sc.nextInt();
-        if (n > length) {
+        if (n >= length) {
+            System.out.println("Index out of bounds");
             return;
         } else {
             for (int i = 0; i <= n; i++) {
@@ -83,7 +90,7 @@ public class LinkedListUse {
                     break;
                 }
                 if (i == n) {
-                    System.out.println("The value at the position " + n + " is " + p.val);
+                    System.out.println("The value at position " + n + " is " + p.val);
                     break;
                 }
                 p = p.next;
@@ -115,7 +122,6 @@ public class LinkedListUse {
         p.next = node;
         return head;
     }
-
     public static Node<Integer> delete(Node<Integer> head, int length) {
         Node<Integer> p = head;
         System.out.println("Enter the position where you want to delete");
@@ -138,9 +144,8 @@ public class LinkedListUse {
         }
         return head;
     }
-
     public static int search(Node<Integer> head) {
-        System.out.println("Enter the Number you want to search");
+        System.out.println("Enter the number you want to search");
         int n = sc.nextInt();
         Node<Integer> p = head;
         int count = 0;
@@ -159,6 +164,9 @@ public class LinkedListUse {
         Node<Integer> p = head, temp;
         System.out.println("Enter the number of last nodes you want to append at the front");
         int n = sc.nextInt();
+        if (n >= length) {
+            return head;
+        }
         temp = head;
         int i = 0;
         while (i < length - n - 1) {
@@ -174,7 +182,6 @@ public class LinkedListUse {
         current.next = temp;
         return newHead;
     }
-
     public static Node<Integer> reverse(Node<Integer> head) {
         Node<Integer> current, prev, next;
         current = head;
@@ -188,19 +195,46 @@ public class LinkedListUse {
         }
         return prev;
     }
-
     public static void printRecursion(Node<Integer> head) {
         if (head == null) {
             return;
         }
-        System.out.println(head.val);
+        System.out.print(head.val + " ");
         printRecursion(head.next);
     }
-//    public static insertRecursively(Node<Integer>head,int val,int pos) 
-//    {
-//    	if(head==null && pos==0) 
-//    	{
-//    		
-//    	}
-//    }
+    public static Node<Integer> insertRecursively(Node<Integer> head, int x, int pos) {
+        if (head == null && pos > 0) {
+            return head;
+        } else if (pos == 0) {
+            Node<Integer> node = new Node<>(x);
+            node.next = head;
+            return node;
+        } else {
+            head.next = insertRecursively(head.next, x, pos - 1);
+            return head;
+        }
+    }
+    public static Node<Integer> deleteRecursively(Node<Integer> head, int pos) {
+        if (head == null) {
+            return head;
+        } else if (pos == 0) {
+            Node<Integer> temp = head;
+            head = head.next;
+            temp.next = null;
+            return head;
+        } else {
+            head.next = deleteRecursively(head.next, pos - 1);
+            return head;
+        }
+    }
+    public static Node<Integer> reverseLinkedListRecursively(Node<Integer> current, Node<Integer> prev) {
+        if(current==null) {
+        	return prev;
+        }
+    	Node<Integer>next;
+    	next=current.next;
+    	current.next=prev;
+    	return  reverseLinkedListRecursively(next,current);
+    }
+
 }

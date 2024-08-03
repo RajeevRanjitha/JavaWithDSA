@@ -6,31 +6,24 @@ public class LinkedListCollections {
 	public static void main(String args[]) 
 	{
 		LinkedList<Integer>obj=new LinkedList<>();
-		System.out.println(obj.add(14));
-		obj.add(5);
-		obj.add(10);
-		obj.add(200);
-		obj.add(2,100);
-		obj.add(3,100);
-		obj.addFirst(100);
-		System.out.println("The elements added are");
-		print(obj);
-		System.out.println("removing");
-		obj.remove();
-		LinkedList<Integer>obj2=new LinkedList<>();
-		obj2.add(100);
-		obj2.retainAll(obj);
-		System.out.println("After retaing the elemetns in the object 2 is ");
-		print(obj2);
-		System.out.println(obj.remove());
-		obj.retainAll(obj2);
-		obj.containsAll(obj2);
-		obj.addAll(0, obj2);
-		obj.indexOf(34);
 		obj.add(45);
-		print(obj);
-		print(obj2);
+		obj.add(75);
+		LinkedList<Integer>obj1=new LinkedList<>();
+		obj1.add(45);
+		obj1.add(75);
+		obj1.add(90);
 		System.out.println();
+		System.out.println(obj1.containsAll(obj));
+		print(obj);
+		System.out.println();
+		print(obj1);
+		obj1.addAll(obj);
+		print(obj1);
+	//	obj1.removeAll(obj);
+		obj1.retainAll(obj);
+		print(obj1);
+		
+		
 	}
 	public static void print(LinkedList<Integer> obj) 
 	{

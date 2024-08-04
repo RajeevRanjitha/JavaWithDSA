@@ -1,7 +1,7 @@
 package colections;
 import java.util.Stack;
 import java.util.Scanner;
-public class StackCollections {
+public class CheckValidExpression {
 	static Scanner sc=new Scanner(System.in);
 	public static void main(String args[]) 
 	{

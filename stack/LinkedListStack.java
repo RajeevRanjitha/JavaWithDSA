@@ -50,4 +50,13 @@ public class LinkedListStack<T>{
 	{
 		return size==0;
 	}
+	public void print() 
+	{
+		Node<T>p=top;
+		while(p!=null) 
+		{
+			System.out.println(p.val);
+			p=p.next;
+		}
+	}
 }

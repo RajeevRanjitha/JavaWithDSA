@@ -15,18 +15,13 @@ public class ReverseStack {
 		}
 		System.out.println("Stack Before Revering");
 		stack.print();
-		LinkedListStack<String> reverse =reverse(stack);
-		System.out.println("Stack After Reversing");
-		reverse.print();
-	}
-	public static LinkedListStack<String> reverse(LinkedListStack<String>stack) throws EmptYException
-	{
-		LinkedListStack<String>stackReverseHelper=new LinkedListStack<String>();
-		int n=stack.size();
-		for(int i=0;i<n;i++) 
-		{
-			stackReverseHelper.push(stack.pop());
-		}
-		return stackReverseHelper;
+		System.out.println("Stack reversal Using recursion");
+		stack.reverseRecursivelyHelper();
+		stack.print();
+		stack.push("Hello Gayatri");
+		stack.push("Hello Rajeev");
+		stack.push("Hi Santosh");
+		stack.pop();
+		stack.print();
 	}
 }

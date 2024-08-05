@@ -25,7 +25,8 @@ public class LinkedListOperationsAndItsImplementation {
             System.out.println("14. MergeSort");
             System.out.println("15.Swapping of two elements in a linked List");
             System.out.println("16. Kreverse");
-            System.out.println("17 exit...");
+            System.out.println("17. Reverse the linkedList");
+            System.out.println("18 exit...");
             System.out.print("Enter your choice: ");
             choice = sc.nextInt();
             switch (choice) {
@@ -116,6 +117,15 @@ public class LinkedListOperationsAndItsImplementation {
                 	print(head);
                 	break;
                 case 17:
+                	System.out.println("Reverse a linkedList using Recursion");
+                	head=reverseRecursively(head);
+                	System.out.println("After reverse Recursion the Linked List is");
+                	print(head);
+                case 18:
+                	System.out.println("Swapping of Two numbers ... Trying by me");
+                	swap(head);
+                	print(head);
+                case 19:
                     System.out.println("Exiting...");
                     break;
                 default:
@@ -124,6 +134,55 @@ public class LinkedListOperationsAndItsImplementation {
             }
         } while (choice != 14);
     }
+	private static void swap(Node<Integer> head) {
+		Node<Integer>prevM=head,prevN=head,currentN=head,currentM=head;
+		System.out.println("Enter the position you want to replace");
+		int m=sc.nextInt();
+		System.out.println("Enter the Second Position you want to replace with");
+		int n=sc.nextInt();
+		if(prevN.next.next==null) 
+		{
+			Node<Integer> temp=prevM.next;
+			temp=prevM;
+			prevM=prevN.next;
+			prevN.next=temp;
+			return;
+		}
+		else 
+		{
+			for(int i=0;i<m-1 ;i++) 
+			{
+				prevM=prevM.next;
+			}
+			currentM=prevM.next;
+			for(int i=0;i<n-1;i++) 
+			{
+				prevN=prevN.next;
+			}
+			currentN=prevN.next;
+			prevM.next=currentN;
+			currentN.next=currentM;
+			prevN.next=currentM;
+			currentM.next=currentN;
+		}
+	}
+	private static Node<Integer> reverseRecursively(Node<Integer> head) {
+		if(head==null |head.next==null) 
+		{
+			return head;
+		}
+		Node<Integer>smallerHead,p=head;
+		smallerHead=reverseRecursively(head.next);
+		p=smallerHead;
+		while(p.next!=null) 
+		{
+			p=p.next;
+		}
+		p.next=head;
+		head.next=null;
+		head=smallerHead;
+		return head;
+	}
 	public static Node<Integer> createLinkedList() {
         Node<Integer> head;
         System.out.println("Enter the value of the node");
@@ -310,13 +369,13 @@ public class LinkedListOperationsAndItsImplementation {
         }
     }
     public static Node<Integer> reverseLinkedListRecursively(Node<Integer> current, Node<Integer> prev) {
-        if (current == null) {
-            return prev;
-        }
-        Node<Integer> next;
-        next = current.next;
-        current.next = prev;
-        return reverseLinkedListRecursively(next, current);
+       if(current==null) 
+       {
+    	   return prev;
+       }
+       Node<Integer>next=current.next;
+       current.next=prev;
+       return reverseLinkedListRecursively(next,current);
     }
 
     public static Node<Integer> midElement(Node<Integer> head) {

@@ -59,4 +59,16 @@ public class LinkedListStack<T>{
 			p=p.next;
 		}
 	}
+	public Node<T> reverseRecursively(Node<T> current, Node<T> prev) {
+        if (current == null) {
+            return prev;
+        }
+        Node<T> next = current.next;
+        current.next = prev;
+        return reverseRecursively(next, current);
+    }
+    public void reverseRecursivelyHelper() {
+        top = reverseRecursively(top, null);
+    }
+
 }

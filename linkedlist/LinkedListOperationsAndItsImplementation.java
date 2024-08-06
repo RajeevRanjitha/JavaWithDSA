@@ -127,7 +127,7 @@ public class LinkedListOperationsAndItsImplementation {
                 	print(head);
                 case 19:
                     System.out.println("Exiting...");
-                    break;
+                    return;
                 default:
                     System.out.println("Invalid choice. Please try again.");
                     break;

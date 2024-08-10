@@ -7,7 +7,7 @@ public class ArrayQueue {
 	private int rear;
 	public ArrayQueue() 
 	{
-		a=new int[10];
+		a=new int[3];
 		front=-1;
 		rear=-1;
 		size=0;
@@ -23,7 +23,7 @@ public class ArrayQueue {
 	{
 		if(rear==a.length) 
 		{
-			throw new FulLException();
+			dynamicQueue();
 		}
 		if(size==0) 
 		{
@@ -74,5 +74,24 @@ public class ArrayQueue {
 	public int size() 
 	{
 		return size;
+	}
+	public void dynamicQueue() 
+	{
+		int b[]=new int[2*a.length];
+		if((rear+1)%a.length==0) 
+		{
+			int k=0;
+			for(int i=front;i<a.length;i++) 
+			{
+				b[k]=a[i];
+				k++;
+			}
+			for(int i=0;i<front;i++) 
+			{
+				b[k]=a[i];
+				k++;
+			}
+		}
+		a=b;
 	}
 }

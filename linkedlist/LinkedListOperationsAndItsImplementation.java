@@ -26,7 +26,9 @@ public class LinkedListOperationsAndItsImplementation {
             System.out.println("15.Swapping of two elements in a linked List");
             System.out.println("16. Kreverse");
             System.out.println("17. Reverse the linkedList");
-            System.out.println("18 exit...");
+            System.out.println("18 Swapping of Two numbers in the LinkedList");
+            System.out.println("19. Delete Alternate Nodes of the Linke List");
+            System.out.println("20. exit");
             System.out.print("Enter your choice: ");
             choice = sc.nextInt();
             switch (choice) {
@@ -126,6 +128,9 @@ public class LinkedListOperationsAndItsImplementation {
                 	swap(head);
                 	print(head);
                 case 19:
+                	head=deleteAlternate(head);
+                	print(head);
+                case 20:
                     System.out.println("Exiting...");
                     return;
                 default:
@@ -134,6 +139,15 @@ public class LinkedListOperationsAndItsImplementation {
             }
         } while (choice != 14);
     }
+	private static Node<Integer> deleteAlternate(Node<Integer> head) {
+		Node<Integer>p=head;
+		while( p!=null && p.next!=null ) 
+		{
+			p.next=p.next.next;
+			p=p.next;
+		}
+		return head;
+	}
 	private static void swap(Node<Integer> head) {
 		Node<Integer>prevM=head,prevN=head,currentN=head,currentM=head;
 		System.out.println("Enter the position you want to replace");
@@ -453,29 +467,22 @@ public class LinkedListOperationsAndItsImplementation {
         if (m == n) {
             return;
         }
-        Node<Integer> prevM = null, currM = head;
-        for (int i = 0; i < m; i++) {
-            prevM = currM;
-            currM = currM.next;
+        Node<Integer>currn=head,currm=head,prevm=null,prevn=null;
+        for(int i=0;i<m;i++) 
+        {
+        	prevn=currn;
+        	currn=currn.next;
         }
-        Node<Integer> prevN = null, currN = head;
-        for (int i = 0; i < n; i++) {
-            prevN = currN;
-            currN = currN.next;
+        for(int i=0;i<n;i++) 
+        {
+        	prevm=currm;
+        	currm=currm.next;
         }
-        if (prevM != null) {
-            prevM.next = currN;
-        } else {
-            head = currN;
-        }
-        if (prevN != null) {
-            prevN.next = currM;
-        } else {
-            head = currM;
-        }
-        Node<Integer> temp = currM.next;
-        currM.next = currN.next;
-        currN.next = temp;
+        Node<Integer>temp=currm.next;
+        currm.next=currn.next;
+        prevn.next=currm;
+        currn.next=temp;
+        prevm.next=currn;
     }
     public static Node<Integer> kReverse(Node<Integer>head) 
     {

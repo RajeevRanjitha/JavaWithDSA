@@ -28,10 +28,21 @@ public class Dequeue<T> {
 		{
 			throw new EmptyException();
 		}
-		T temp=front.val;
-		front=front.next;
-		size--;
-		return temp;
+		if(front==rear) 
+		{
+			T temp=front.val;
+			this.front=null;
+			this.rear=null;
+			size--;
+			return temp;
+		}
+		else 
+		{
+			T temp=front.val;
+			front=front.next;
+			size--;
+			return temp;
+		}
 	}
 	public void insertRear(T val) 
 	{
@@ -60,17 +71,21 @@ public class Dequeue<T> {
 			temp=rear.val;
 			front=null;
 			rear=null;
+			size--;
 			return temp;
 		}
-		while(p.next.next!=null) 
+		else 
 		{
-			p=p.next;
+			while(p.next.next!=null) 
+			{
+				p=p.next;
+			}
+			temp=p.next.val;
+			p.next=null;
+			rear=p;
+			size--;
+			return temp;
 		}
-		temp=p.next.val;
-		p.next=null;
-		rear=p;
-		size--;
-		return temp;
 	}
 	public void print() {
         Node<T> current = front;

@@ -15,7 +15,6 @@ public class DequeueUse {
 		dbq.deleterear();
 		dbq.deleterear();
 		dbq.deleterear();
-		dbq.deleterear();
 		dbq.print();
 	}
 }

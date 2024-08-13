@@ -1,7 +1,5 @@
 package trees;
-
 public class CountNumberOfLeafNodes {
-	static int count =0;
 	public static void main(String args[]) 
 	{
 		BinaryNodeClass<Integer>obj=new BinaryNodeClass<Integer>();
@@ -9,15 +7,17 @@ public class CountNumberOfLeafNodes {
 		System.out.println(countLeaf(root));
 	}
 	private static int countLeaf(BinaryNodeClass<Integer> root) {
+		if(root==null) 
+		{
+			return 0;
+		}
 		if(root.left==null && root.right==null) 
 		{
-			count++;
+			return 1;
 		}
 		else 
 		{
-			countLeaf(root.left);
-			countLeaf(root.right);
+			return countLeaf(root.left)+countLeaf(root.right);
 		}
-		return count;
 	}
 }

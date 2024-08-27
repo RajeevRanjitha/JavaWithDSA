@@ -10,7 +10,7 @@ public class BinaryNodeClass<T> {
 	{
 		this.val=val;
 	}
-	BinaryNodeClass()
+	public BinaryNodeClass()
 	{
 		
 	}

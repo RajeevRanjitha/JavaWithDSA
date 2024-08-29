@@ -4,7 +4,6 @@ public class Child1 extends Parent {
     String name;
     int rollno;
     public void parentPrint() {
-    	super.setName("Ranjtha");
     	super.getName();
     	super.rollno=96;
         super.print();

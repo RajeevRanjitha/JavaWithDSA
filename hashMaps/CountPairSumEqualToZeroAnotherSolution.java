@@ -17,9 +17,9 @@ public class CountPairSumEqualToZeroAnotherSolution {
         for (int num : arr) {
             frequencyMap.put(num, frequencyMap.getOrDefault(num, 0) + 1);
         }
-        
         int count = 0;
         for (int num : frequencyMap.keySet()) {
+        	
             if (num < 0 && frequencyMap.containsKey(-num)) {
                 count += frequencyMap.get(num) * frequencyMap.get(-num);
             }
